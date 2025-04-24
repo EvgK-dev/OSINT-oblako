@@ -1,0 +1,25 @@
+{% extends 'oblako/base.html' %}
+{% load static %}
+
+
+
+{% block main %}
+<section class="choice-app">
+  <div class="choice-one-app-conteiner">
+    <h2>Каталог OSINT-ресурсов</h2>
+    <p>Каталог общедоступных ресурсов, используемых для поиска информации в сети Интернет.</p>
+    <a href="{% url 'OsintPage' %}" target="_blank">переход</a>
+  </div>
+
+  {% for page in choice_pages %}
+  <div class="choice-one-app-conteiner">
+      <h2>{{ page.name }}</h2>
+      <p>{{ page.description }}</p>
+      <a href="{{ page.link }}" target="_blank">переход</a>
+  </div>
+  {% empty %}
+     
+  {% endfor %}
+
+</section>
+{% endblock main %}

@@ -1,0 +1,44 @@
+<div class="level-next-conteiner level-{{ level }} none">
+    <!-- Ссылки текущего уровня -->
+    <div class="level-next-links-block">
+      {% for group in catalog.resource_links_grouped %}
+      <div class="links-rating-{{ group.rating }}">
+        <div class="links-star">
+          {% if group.rating == 5 %}<span>⭐⭐⭐⭐⭐</span>
+          {% elif group.rating == 4 %}<span>⭐⭐⭐⭐</span>
+          {% elif group.rating == 3 %}<span>⭐⭐⭐</span>
+          {% elif group.rating == 2 %}<span>⭐⭐</span>
+          {% elif group.rating == 1 %}<span>⭐</span>
+          {% else %}<span>Нет рейтинга</span>{% endif %}
+        </div>
+        {% for link in group.links %}
+        <div class="link-block" data-link=" {{ link.id }}">
+          <div class="link-main-info {% if link.is_paid %}pay{% else %}free{% endif %} {% if link.is_folder %}folder{% endif %}" data-reiting="{{ group.rating }}">
+            <a class="link" href="{{ link.link }}">{{ link.name }}</a>
+            <div class="link-comment-img drop">?</div>
+          </div>
+          <div class="link-addition-info none">
+            <p>{{ link.comment }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endfor %}
+    </div>
+  
+    <!-- Дочерние каталоги -->
+    {% for child in catalog.children %}
+    <div class="level-next-conteiner level-{{ level|add:0 }}" data-cat="{{ child.catalog.id }}">
+      <div class="level-next-title-block level-{{ level|add:0 }}-title" 
+            onclick="levelNextClick(this)"
+            
+           onclick="showChild(this)">
+        <div class="osint-next-circle-count"><span>{{ child.resource_links_count }}</span></div>
+        <div class="osint-next-circle-name"><p>{{ child.catalog.name }}</p></div>
+        <div class="osint-next-circle-close">⋎</div>
+      </div>
+      {% include "oblako/get_catalog_data.html" with catalog=child level=level|add:1 %}
+    </div>
+    {% endfor %}
+  </div>
+  

@@ -1,0 +1,30 @@
+{% extends 'oblako/base.html' %}
+{% load static %}
+
+{% block main %}
+  <h2>Каталог OSINT-ресурсов</h2>
+  <h3>Каталог общедоступных ресурсов, используемых для поиска информации в сети Интернет (специализированные сайты и Telegram-боты).</h3>
+  
+  <section class="osint-container">
+
+    <div class="work-window">
+      <!--  контент -->
+    </div>
+
+    <div class="list-window">
+      {% for cat in catalog_data %}
+      <div class="level-one-conteiner level-one">
+        <div class="level-next-title-block level-one-title" onclick="levelOneClick(this)">
+          <div class="osint-next-circle-count"><span>{{ cat.resource_links_count }}</span></div>
+          <div class="osint-next-circle-name"><p>{{ cat.catalog.name }}</p></div>
+        </div>
+
+        {% include "oblako/catalog_recursive.html" with catalog=cat level=2 %}
+
+      </div>
+      {% endfor %}
+    </div>
+
+  </section>
+
+{% endblock main %}

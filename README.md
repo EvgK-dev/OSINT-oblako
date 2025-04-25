@@ -1,3 +1,5 @@
+![Oblako Banner](oblako_.png)
+
 # Oblako – онлайн каталог OSINT ресурсов
 
 **Oblako** — веб-приложение, созданное на базе Django и Django REST Framework (DRF) для управления каталогом OSINT-ресурсов  

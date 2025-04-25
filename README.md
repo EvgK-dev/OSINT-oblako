@@ -1,4 +1,5 @@
-![Oblako Banner](oblako_.png)
+![Oblako Banner](assets/oblako_.png)
+
 
 # Oblako – онлайн каталог OSINT ресурсов
 
